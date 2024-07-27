@@ -26,7 +26,7 @@ defmodule ICalendar.Mixfile do
     [
       {:timex, "~> 3.7"},
       {:mix_test_watch, ">= 0.0.0", only: :dev},
-      {:ex_doc, ">= 0.0.0", only: [:dev, :test], runtime: false}
+      {:ex_doc, "~> 0.18", only: [:dev, :test], runtime: false}
     ]
   end
 
