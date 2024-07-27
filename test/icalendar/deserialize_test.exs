@@ -85,6 +85,23 @@ defmodule ICalendar.DeserializeTest do
       assert event.dtend.time_zone == "America/Chicago"
     end
 
+    test "with Dates" do
+      ics = """
+      BEGIN:VEVENT
+      DTSTART;VALUE=DATE:20240727
+      DTEND;VALUE=DATE:20240728
+      END:VEVENT
+      """
+
+      [event] = ICalendar.from_ics(ics)
+
+      assert %Date{} = event.dtstart
+      assert %Date{} = event.dtend
+
+      assert Date.compare(event.dtstart, Date.new!(2024, 7, 27)) == :eq
+      assert Date.compare(event.dtend, Date.new!(2024, 7, 28)) == :eq
+    end
+
     test "with CR+LF line endings" do
       ics = """
       BEGIN:VEVENT
